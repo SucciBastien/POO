@@ -1,0 +1,54 @@
+Exercice1:
+Créez une classe nommée "Voiture", cette classe doit avoir les propriétés suivantes :
+
+	- Marque 
+	- Modèle 
+	- Année 
+	- Couleur 
+	- Vitesse actuelle (publique, valeur par défaut:0)
+
+Voici les méthodes :
+
+	- un constructeur qui prend les arguments marque et modèle et les affectes aux propriétés correspondantes.
+	- Une méthode "afficher" qui affiche les informations sur la voiture sous la forme "Marque - Modèle (Année) - Couleur - Vitesse : vitesse_actuelle km/h".
+	- une méthode "accelerer" qui prend en argument une valeur de vitesse et l'ajoute à la vitesse actuelle.
+
+************************************************************************************************************************************************************************
+
+Exercice2 :
+Considérons la classe Stagiaire ayant les attributs suivants :
+• nom : attribut public de type chaine de caractère
+• notes : attribut prublic de type tableau de réels
+1. Créez la classe Stagiaire
+2. Générez les getters et les setters des deux attributs
+3. Définissez un constructeur avec 2 paramètres Stagiaire (string $nom, array $notes)
+4. Écrivez la méthode calculerMoyenne () qui permet de retourner la moyenne des notes d’un
+stagiaire
+5. Écrivez la méthode trouverMax() et trouverMin() qui permettent de retourner
+respectivement les notes max et min d’un stagiaire.
+6. Faire l’affichage
+
+***********************************************************************************************************************************************************************
+
+Exercice3 :
+Créez une classe pour gérer des produits. Chaque produit aura les caractériqtiques suivantes :
+
+1.Nom: Le nom du produit
+2.Prix: Le prix unitaire du produit en euros
+3.Quantité en stock : Le nombre d'unités du produit en stock
+
+La classe doit avoir les spécifications suivantes:
+
+- Un constructeur qui prend en paramètre le nom, le prix initil et la quantité initial en stock du produit
+- Une méthode "afficherProduit" qui affiche les informations du produit sous la forme :
+Produit : [Nom du produit]
+Prix du [Prix du produit] euros
+Quantité en stock : [Quantité en stock]
+- Une méthode "mettreAJourPrix"($nouveauPrix) qui permet de mettre à jour le prix du produit
+- Une méthode "ajouterStock"($quantiteAjoutee) qui permet d'ajouter des unités au stock du produit
+- Une méthode "vendreProduit"($quantiteVendue) qui permet de vendre des unités du produit. Si la quantité
+demandée est disponible en stock, elle est vendue et le stock est mis à jour. Sinon, un message indiquant un stock insuffisant est affiché. 
+
+Utilisez la classe que vous avez créée pour effectuer des opérations sur un produit. Créez une instance de la classe, 
+affichez les informations initiales du produit, effectuez des opérations de mise à jour de prix, ajout de stock, et 
+vente de produits, puis affichez les informations mises à jour du produit.
