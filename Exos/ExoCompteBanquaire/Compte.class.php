@@ -5,7 +5,7 @@ class Compte extends Client{
 
     public function __construct(private string $numeroCompte, private float $solde)
     {
-
+        
     }
 
     public function getNumeroCompte(){return $this->numeroCompte;}
@@ -29,7 +29,8 @@ class Compte extends Client{
     }
 
     public function virement($compte, $somme){
-        $this->solde -= $somme;
+        $this->retrait($somme);
+        $compte->versement($somme);
     }
 
 }

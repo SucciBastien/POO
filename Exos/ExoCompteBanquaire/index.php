@@ -95,10 +95,10 @@ while (empty($action)){
             if ($montant<=$compte->getSolde()){
                 $compte->retrait($montant);
                 echo "Retrait effectué.\nNouveau solde : " . $compte->getSolde() . "\n";
-                break;
+                goto a;
             }
             else{
-                echo "Montant insuffisant !\n";
+                echo "Solde insuffisant !\n";
                 goto b;
             }
         case 4: echo "\nSur quel compte voulez-vous verser ?\n \n1. " . $client->getCompte(0) . "\n2. " . $client->getCompte(1) . "\n\n";
@@ -131,6 +131,46 @@ while (empty($action)){
             $compte->versement($montant);
             echo "Versement effectué.\nNouveau solde : " . $compte->getSolde() . "\n";
             goto a;
+        case 5: echo "\nA partir de quel compte ?\n \n1. " . $client->getCompte(0) . "\n2. " . $client->getCompte(1) . "\n\n";
+            $numcompte = (int)readline();
+            switch ($numcompte){
+                case 1: 
+                    if ($client->getCompte(0)==$compte1->getNumeroCompte()){
+                        $compte = $compte1;
+                        $autreCompte = $compte2;
+                        break;
+                    }
+                    else{
+                        $compte = $compte2;
+                        $autreCompte = $compte1;
+                        break;
+                    }
+                case 2:
+                    if ($client->getCompte(0)==$compte1->getNumeroCompte()){
+                        $compte = $compte3;
+                        $autreCompte = $compte4;
+                        break;
+                    }
+                    else{
+                        $compte = $compte4;
+                        $autreCompte = $compte3;
+                        break;
+                    }
+                    break;
+                default : echo "Choix invalide !\n\n";
+                    goto b;
+            }
+            echo "Quel montant virez-vous ?\n";
+            $montant = (float)readline();
+            if ($montant<=$compte->getSolde()){
+                $compte->virement($autreCompte, $montant);
+                echo "Virement effectué.\nNouveau solde de ce compte: " . $compte->getSolde() . "\nNouveau du compte viré : " . $autreCompte->getSolde() . "\n";
+                goto a;
+            }
+            else{
+                echo "Solde insuffisant !\n";
+                goto b;
+            }
         case $action=="r" or $action=="R":
             goto a;
         default: echo "Choix invalide !\n\n";
