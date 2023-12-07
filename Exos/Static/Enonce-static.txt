@@ -1,0 +1,29 @@
+Objectif : Comprendre l'utilisation des méthodes et attributs statiques et non statiques en PHP.
+
+Description : Vous devez créer une classe Utilitaire qui gère des opérations mathématiques et qui 
+peut également être utilisée pour stocker des informations non liées aux opérations.
+
+Instructions :
+1°) Déclarez une classe nommée Utilitaire.
+2°) Ajoutez un attribut statique privé $totalOperations pour suivre le nombre total d'opérations 
+mathématiques effectuées.
+3°) Ajoutez un attribut privé $information pour stocker une information non liée aux opérations
+4°) Ajoutez un constructeur qui prend en paramètre une information et initialise l'attribut $information.
+5°) Ajoutez une méthode non statique getInformation() qui retourne la valeur de l'attribut $information.
+6°) Ajoutez une méthode statique addition($a, $b) qui prend deux paramètres $a et $b, effectue une addition, 
+incrémente le nombre total d'opérations, puis retourne le résultat.
+7°) Ajoutez une méthode statique multiplication($a, $b) qui prend deux paramètres $a et $b, effectue une 
+multiplication, incrémente le nombre total d'opérations, puis retourne le résultat.
+8°) Ajoutez une méthode statique getTotalOperations() qui retourne le nombre total d'opérations mathématiques effectuées.
+
+Utilisation de la Classe :
+1°) Créez une instance de la classe Utilitaire en lui passant une information lors de l'instanciation.
+2°) Utilisez la méthode non statique getInformation() pour afficher l'information stockée.
+3°) Effectuez quelques opérations en utilisant les méthodes statiques de la classe Utilitaire.
+4°) Affichez les résultats de chaque opération.
+5°) Affichez le nombre total d'opérations effectuées en utilisant la méthode statique getTotalOperations.
+
+Conseils :
+- N'oubliez pas de déclarer les méthodes et les attributs comme statiques ou non statiques en fonction 
+de leur utilisation.
+- Testez votre classe en effectuant différentes opérations et en vérifiant que l'information est correctement stockée.

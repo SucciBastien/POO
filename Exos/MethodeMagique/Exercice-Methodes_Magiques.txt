@@ -1,0 +1,20 @@
+ Gestion des employés
+
+1.Créez une classe Employe avec les attributs privés suivants :
+
+  - nom (chaîne de caractères)
+  - salaire (nombre décimal)
+
+2.Ajoutez les méthodes magiques nécessaires pour :
+
+  - Initialiser la classe avec le nom et le salaire lors de la création d'un nouvel employé.
+  - Permettre l'accès en lecture aux attributs privés (__get).
+  - Permettre la représentation sous forme de chaîne de caractères (__toString) qui affiche le nom et le salaire de l'employé.
+
+3.Créez plusieurs instances de la classe Employe avec des données différentes.
+
+4.Affichez les informations de chaque employé en utilisant la méthode echo.
+
+5.Ajoutez une méthode augmenterSalaire qui prend en paramètre un pourcentage d'augmentation du salaire et ajuste le salaire de l'employé en conséquence.
+
+6.Testez la méthode augmenterSalaire sur l'un des employés.
