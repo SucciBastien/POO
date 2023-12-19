@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
     <!-- <script src="public/js/script.js"></script> -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/public/css/style.css">
     <title>Bibliothèque</title>
 </head>
 <body>
@@ -16,8 +16,8 @@
             <nav>
                 <h2 class="logo">AFCI | <span>BIBLIOTHEQUE</span></h2>
                 <ul>
-                    <li><a href="accueil">Accueil</a></li>
-                    <li><a href="livres">Livres</a></li>
+                    <li><a href="<?= URL ?>accueil">Accueil</a></li>
+                    <li><a href="<?= URL ?>livres">Livres</a></li>
                     <li><a href="">Contact</a></li>
                 </ul>
                 <!-- <button type="button">Connexion</button> -->
