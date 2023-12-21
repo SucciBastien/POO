@@ -36,6 +36,40 @@ class LivresController{
         header("Location: " . URL . "livres");
     }
 
+    public function suppressionLivre($id){
+        //recuperation du nom de l'image
+        $nomImage = $this->livreManager->getLivreById($id)->getimage();
+
+        // supression de l'image dans le repertoire concerné
+        unlink("public/images/" . $nomImage);
+
+        // suppression de livre dans la BD
+        $this->livreManager->suppressionLivreBD($id);
+
+        //Redirection vers la page des livres
+        header("Location: " . URL . "livres");
+    }
+
+    public function modificationLivre($id){
+        $livre = $this->livreManager->getLivreById($id);
+        require "Views/modificationLivre.view.php";
+    }
+
+    public function modificationLivreValidation(){
+        $imageActuelle = $this->livreManager->getLivreById($_POST["identifiant"])->getImage();
+        $file = $_FILES['image'];
+        if ($file['size'] > 0 ){
+            unlink("public/images/" . $imageActuelle );
+            $repertoire = "public/images/";
+            $nomImageAdd = $this->ajoutImage($file, $repertoire);
+        }
+        else{
+            $nomImageAdd = $imageActuelle;
+        }
+        $this->livreManager->modificationLivreBD($_POST["identifiant"], $_POST["titre"], $_POST["nbPages"], $nomImageAdd);
+        header('Location: ' . URL . "livres");
+    }
+
     public function ajoutImage($file, $dir){
         //Va d'abord vérifier si on a renseigné une image dans le formulaire
         if (!isset($file["name"]) || empty($file["name"])){
@@ -49,11 +83,16 @@ class LivresController{
             mkdir($dir, 0777);
         }
 
+
+        do {
+            $random = rand(0, 999999);
+            $target_file = $dir . $random . "_" . $file["name"];
+        } while (file_exists($target_file));
+
         //On récupère l'extension du fichier
         $extension = strtolower(pathinfo($file["name"], PATHINFO_EXTENSION));
         //on va générer un chiffre aléatoire pour donner un nom de fichier
-        $random = rand(0, 999999);
-        $target_file = $dir . $random . "_" . $file["name"];
+        
 
          //Ensuite je fais différents tests pour vérifier que le fichier correspond bien à ce qui est attendu
         if(!getimagesize($file["tmp_name"])){
@@ -76,5 +115,7 @@ class LivresController{
         else return ($random."_".$file['name']);
 
     }
+
+    
 
 }

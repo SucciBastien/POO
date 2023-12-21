@@ -42,13 +42,13 @@ class LivreManager extends BDConnexion{
 
     public function getLivreById($id){
         for($i=0; $i<count($this->livres); $i++){
-            if($this->livres[$i]->getIdLivre() === $id){
+            if($this->livres[$i]->getIdLivre() == $id){
                 return $this->livres[$i];
             }
         }
     }
 
-    public function ajoutLivreBDD($titre, $nbPages, $img){
+    public function ajoutLivreBDD($titre, $nbPages, $image){
         $req = "INSERT INTO livres(titre, nbPages, image)
         VALUES
         (:titre, :nbPages, :image)";
@@ -57,17 +57,55 @@ class LivreManager extends BDConnexion{
 
         $stmt->bindValue(":titre", $titre, PDO::PARAM_STR);
         $stmt->bindValue(":nbPages", $nbPages, PDO::PARAM_INT);
-        $stmt->bindValue(":image", $img, PDO::PARAM_STR);
+        $stmt->bindValue(":image", $image, PDO::PARAM_STR);
 
         $resultat = $stmt->execute();
 
         $stmt->closeCursor();
 
         if($resultat > 0){
-            $livre = new livre($this->getBdd()->lastInsertId(), $titre, $nbPages, $img);
+            $livre = new livre($this->getBdd()->lastInsertId(), $titre, $nbPages, $image);
             $this->ajoutLivre($livre);
         }
 
+    }
+
+    public function suppressionLivreBD($id){
+        $req = "DELETE FROM livres WHERE idLivre = :idLivre";
+
+        $stmt = $this->getBdd()->prepare($req);
+
+        $stmt->bindValue(":idLivre", $id, PDO::PARAM_INT);
+
+        $resultat = $stmt->execute();
+        $stmt->closeCursor();
+
+        if($resultat > 0){
+            $livre = $this->getLivreById($id);
+            unset($livre);
+        }
+    }
+
+    public function modificationLivreBD($id, $titre, $nbPages, $image){
+        $req = "UPDATE livres SET titre = :titre, nbPages = :nbPages, image = :image WHERE idLivre = :idLivre;";
+
+        $stmt = $this->getBDD()->prepare($req);
+
+        $stmt->bindValue(":idLivre", $id, PDO::PARAM_INT);
+        $stmt->bindValue(":titre", $titre, PDO::PARAM_STR);
+        $stmt->bindValue(":nbPages", $nbPages, PDO::PARAM_INT);
+        $stmt->bindValue(":image", $image, PDO::PARAM_STR);
+
+        $resultat = $stmt->execute();
+
+        $stmt->closeCursor();
+
+        if($resultat > 0){
+            $this->getLivreById($id)->settitre($titre);
+            $this->getLivreById($id)->setnbPages($nbPages);
+            $this->getLivreById($id)->setimage($image);
+
+        }
     }
 
 }

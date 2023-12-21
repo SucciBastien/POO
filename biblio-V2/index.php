@@ -26,13 +26,16 @@ try{
                     $livreController->ajoutLivre();
                 }
                 else if($url[1] === "m"){
-                    echo "Modif";
+                    $livreController->modificationLivre($url[2]);
                 }
                 else if($url[1] === "s"){
-                    echo "Suppr";
+                    $livreController->suppressionLivre($url[2]);
                 }
                 else if($url[1] === "av"){
                     $livreController->ajoutLivreValidation();
+                }
+                else if($url[1] === "mv"){
+                    $livreController->modificationLivreValidation();
                 }
                 else{
                     throw new Exception("La page n'existe pas... autodestruction");
